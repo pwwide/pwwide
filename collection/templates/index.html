@@ -1,12 +1,16 @@
-{% load staticfiles %}
-<!doctype html>
-<html>
-    <head>
-        <title>Prestige worldwide</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    </head>
-    <body>
-        <h1>This is the website for students</h1>
-        <p>our group are the best!</p>
-    </body>
-</html>
+
+{% extends 'base.html' %}
+{% block title %}
+    Homepage - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    {% for thing in things %}
+    <h2>
+        <a href="{% url 'thing_detail' slug=thing.slug %}">
+            {{ thing.name }}
+        </a>
+    </h2>
+    <p>{{ thing.description }}</p>
+    {% endfor %}
+{% endblock content %}
